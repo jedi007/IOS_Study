@@ -25,11 +25,25 @@ class DrawView: UIView {
         tapRecognizer.delaysTouchesBegan = true //在手势识别过程中不会将触摸事件发送给视图 只有当手势识别失败时才会发送给视图
         tapRecognizer.require(toFail: doubleTapRecognizer)
         addGestureRecognizer(tapRecognizer)
+        
     }
+    
+    override var canBecomeFirstResponder: Bool{
+        return true
+    }
+    
+    
     
     var currentLines = [NSValue : Line]()
     var finishedLines = [Line]()
-    var selectedLineIndex: Int?
+    var selectedLineIndex: Int? {
+        didSet{
+            if selectedLineIndex == nil {
+                let menu = UIMenuController.shared
+                menu.setMenuVisible(false, animated: true)
+            }
+        }
+    }
     
     @IBInspectable var finishedLineColor: UIColor = UIColor.black{
         didSet {
@@ -141,6 +155,22 @@ class DrawView: UIView {
         
         let point = gestureRecognizer.location(in: self)
         selectedLineIndex = indexOfLine(at: point)
+        
+        let menu = UIMenuController.shared
+        
+        if selectedLineIndex != nil {
+            let ok = becomeFirstResponder()
+            print(ok)
+            let deleteItem = UIMenuItem(title: "Delete", action: #selector(DrawView.deleteLine(_:)))
+            menu.menuItems = [deleteItem]
+            
+            let targetRect = CGRect(x: point.x, y: point.y, width: 2, height: 2)
+            menu.setTargetRect(targetRect, in: self)
+            menu.setMenuVisible(true, animated: true)
+        } else {
+            menu.setMenuVisible(false, animated: true)
+        }
+        
         setNeedsDisplay()
     }
     
@@ -160,5 +190,14 @@ class DrawView: UIView {
         }
         
         return nil
+    }
+    
+    @objc func deleteLine(_ sender: UIMenuController) {
+        if let index = selectedLineIndex {
+            finishedLines.remove(at: index)
+            selectedLineIndex = nil
+            
+            setNeedsDisplay()
+        }
     }
 }
