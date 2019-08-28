@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DrawView: UIView {
+class DrawView: UIView, UIGestureRecognizerDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -26,6 +26,13 @@ class DrawView: UIView {
         tapRecognizer.require(toFail: doubleTapRecognizer)
         addGestureRecognizer(tapRecognizer)
         
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(DrawView.longPress(_:)))
+        addGestureRecognizer(longPressRecognizer)
+        
+        moveRecognizer = UIPanGestureRecognizer(target: self, action: #selector(DrawView.moveLine(_:)))
+        moveRecognizer.delegate = self
+        moveRecognizer.cancelsTouchesInView = false
+        addGestureRecognizer(moveRecognizer)
     }
     
     override var canBecomeFirstResponder: Bool{
@@ -44,6 +51,7 @@ class DrawView: UIView {
             }
         }
     }
+    var moveRecognizer: UIPanGestureRecognizer!
     
     @IBInspectable var finishedLineColor: UIColor = UIColor.black{
         didSet {
@@ -174,6 +182,42 @@ class DrawView: UIView {
         setNeedsDisplay()
     }
     
+    @objc func longPress(_ gestureRecognizer: UIGestureRecognizer) {
+        print("Recognized a longPress")
+        
+        if gestureRecognizer.state == .began {
+            let point = gestureRecognizer.location(in: self)
+            selectedLineIndex = indexOfLine(at: point)
+            
+            if selectedLineIndex != nil {
+                currentLines.removeAll()
+            }
+        }else if gestureRecognizer.state == .ended{
+            selectedLineIndex = nil
+        }
+        
+        setNeedsDisplay()
+    }
+    
+    @objc func moveLine(_ gestureRecognizer: UIPanGestureRecognizer) {
+        print("Recognized a pan")
+        
+        if let index = selectedLineIndex {
+            if gestureRecognizer.state == .changed {
+                let translation = gestureRecognizer.translation(in: self)
+                
+                finishedLines[index].begin.x += translation.x
+                finishedLines[index].begin.y += translation.y
+                finishedLines[index].end.x += translation.x
+                finishedLines[index].end.y += translation.y
+                
+                gestureRecognizer.setTranslation(CGPoint.zero, in: self)
+                
+                setNeedsDisplay()
+            }
+        }
+    }
+    
     func indexOfLine(at point: CGPoint) -> Int? {
         for (index, line) in finishedLines.enumerated() {
             let begin = line.begin
@@ -199,5 +243,10 @@ class DrawView: UIView {
             
             setNeedsDisplay()
         }
+    }
+    
+    //MARK: - 代理方法
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true;
     }
 }
