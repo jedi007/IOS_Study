@@ -203,7 +203,13 @@ class DrawView: UIView, UIGestureRecognizerDelegate {
         print("Recognized a pan")
         
         if let index = selectedLineIndex {
-            if gestureRecognizer.state == .changed {
+            
+            let menu = UIMenuController.shared
+            if menu.isMenuVisible {
+                selectedLineIndex = nil
+                menu.setMenuVisible(false, animated: true)
+            }
+            else if gestureRecognizer.state == .changed {
                 let translation = gestureRecognizer.translation(in: self)
                 
                 finishedLines[index].begin.x += translation.x
