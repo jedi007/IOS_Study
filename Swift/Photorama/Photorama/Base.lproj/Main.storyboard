@@ -21,21 +21,43 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Jm7-34-qrf">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GgQ-Ad-Ku4">
-                                    <size key="itemSize" width="50" height="50"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="2" id="GgQ-Ad-Ku4">
+                                    <size key="itemSize" width="90" height="90"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="2" minY="2" maxX="2" maxY="2"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UICollectionViewCell" id="3gY-uT-Kkb">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCollectionViewCell" id="3gY-uT-Kkb" customClass="PhotoCollectionViewCell" customModule="Photorama" customModuleProvider="target">
+                                        <rect key="frame" x="2" y="2" width="90" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="diu-3t-fUV">
+                                                    <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                </imageView>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="4cz-qV-wZh">
+                                                    <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                </activityIndicatorView>
+                                            </subviews>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="4cz-qV-wZh" firstAttribute="centerX" secondItem="diu-3t-fUV" secondAttribute="centerX" id="4RD-GF-dCf"/>
+                                            <constraint firstItem="4cz-qV-wZh" firstAttribute="width" secondItem="diu-3t-fUV" secondAttribute="width" id="O5i-4Z-mZq"/>
+                                            <constraint firstItem="4cz-qV-wZh" firstAttribute="centerY" secondItem="diu-3t-fUV" secondAttribute="centerY" id="TIU-sc-PPe"/>
+                                            <constraint firstAttribute="trailing" secondItem="diu-3t-fUV" secondAttribute="trailing" id="Ta0-oQ-WuO"/>
+                                            <constraint firstItem="diu-3t-fUV" firstAttribute="top" secondItem="3gY-uT-Kkb" secondAttribute="top" id="X2H-5Z-vmr"/>
+                                            <constraint firstItem="diu-3t-fUV" firstAttribute="leading" secondItem="3gY-uT-Kkb" secondAttribute="leading" id="XvW-k0-LGV"/>
+                                            <constraint firstAttribute="bottom" secondItem="diu-3t-fUV" secondAttribute="bottom" id="mfb-BU-ue7"/>
+                                            <constraint firstItem="4cz-qV-wZh" firstAttribute="height" secondItem="diu-3t-fUV" secondAttribute="height" id="tBq-IU-HHH"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="diu-3t-fUV" id="4tg-bP-72a"/>
+                                            <outlet property="spinner" destination="4cz-qV-wZh" id="0dR-hp-Hr0"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
