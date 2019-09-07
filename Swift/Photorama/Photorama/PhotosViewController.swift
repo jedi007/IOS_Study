@@ -50,6 +50,21 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
         collectionView.delegate   = self
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "showPhoto"?:
+            if let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
+                let photo = photoDataSource.photos[selectedIndexPath.row]
+                
+                let destinationVC = segue.destination as! PhotoInfoViewController
+                destinationVC.photo = photo
+                destinationVC.store = store
+            }
+        default:
+            preconditionFailure("Unexpected segue identifier.")
+        }
+    }
+    
     //MAERK: - UICollectionViewDelegate Methods
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let photo = photoDataSource.photos[indexPath.row]
@@ -70,4 +85,5 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
             }
         }
     }
+    
 }
