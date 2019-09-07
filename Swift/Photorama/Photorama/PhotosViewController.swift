@@ -40,7 +40,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
         
         
         var finalPhotos = [Photo]()
-        for i in 1...15 {
+        for i in 1...55 {
             let diyPhoto = Photo(title: "test", photoID: "\(i)", remoteURL: testUrl! as URL, dateTaken: Date.init() )
             finalPhotos.append(diyPhoto)
         }
@@ -48,9 +48,6 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
         
         collectionView.dataSource = photoDataSource
         collectionView.delegate   = self
-        
-        
-        
     }
     
     //MAERK: - UICollectionViewDelegate Methods
@@ -71,9 +68,6 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
             {
                 cell.update(with:image)
             }
-            
-            
         }
-        
     }
 }
