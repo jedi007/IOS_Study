@@ -21,7 +21,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
             imageView.image = imageToDisplay
         } else {
             spinner.startAnimating()
-            imageView = nil
+            imageView.image = nil
         }
     }
     

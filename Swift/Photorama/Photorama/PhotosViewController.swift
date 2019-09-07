@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotosViewController: UIViewController {
+class PhotosViewController: UIViewController, UICollectionViewDelegate {
     
     @IBOutlet var collectionView: UICollectionView!
     
@@ -35,21 +35,45 @@ class PhotosViewController: UIViewController {
 //        }
         
         print("==========Date.init(): \(Date.init())")
-        let testUrl = NSURL(string: "https://c-ssl.duitang.com/uploads/item/201209/03/20120903183740_c5Tar.jpeg")
-        let diyPhoto = Photo(title: "test", photoID: "123", remoteURL: testUrl! as URL, dateTaken: Date.init() )
+        let testUrl = NSURL(string: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567865978800&di=bf92f4157ed9cae12878ac2a83adbb48&imgtype=0&src=http%3A%2F%2Fi1.hdslb.com%2Fbfs%2Farchive%2F3f8dfe27be1533320233a1a15c307db91637f649.jpg")
+        //NSURL(string: "https://c-ssl.duitang.com/uploads/item/201209/03/20120903183740_c5Tar.jpeg")
+        
         
         var finalPhotos = [Photo]()
         for i in 1...15 {
-            print(i)
+            let diyPhoto = Photo(title: "test", photoID: "\(i)", remoteURL: testUrl! as URL, dateTaken: Date.init() )
             finalPhotos.append(diyPhoto)
         }
         photoDataSource.photos = finalPhotos
         
         collectionView.dataSource = photoDataSource
+        collectionView.delegate   = self
         
         
         
     }
     
-
+    //MAERK: - UICollectionViewDelegate Methods
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let photo = photoDataSource.photos[indexPath.row]
+        
+        store.fetchImage(for: photo){ (result) -> Void in
+            
+            //下载照片会花一些时间，所有请求完成后index可能会变化，需要获取最新的indexPath
+            guard let photoIndex = self.photoDataSource.photos.firstIndex(of:photo),
+                case let .Success(image) = result else {
+                    return
+            }
+            let photoIndexPath = IndexPath(item: photoIndex, section: 0)
+            
+            //请求完成后只有当cell仍然可见时才刷新cell
+            if let cell = self.collectionView.cellForItem(at: photoIndexPath) as? PhotoCollectionViewCell
+            {
+                cell.update(with:image)
+            }
+            
+            
+        }
+        
+    }
 }
