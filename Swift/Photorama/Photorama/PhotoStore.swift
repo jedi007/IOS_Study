@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 enum ImageResult {
     case Success(UIImage)
@@ -25,6 +26,16 @@ class PhotoStore {
     }()
     
     let imageStore = ImageStore()
+    
+    let persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "Photorama")
+        container.loadPersistentStores{ (description,error) in
+            if let error = error {
+                print("Error setting up Core Data(\(error))")
+            }
+        }
+        return container
+    }()
     
     func fetchInterestingPhotos(completion: @escaping(PhotosResult)-> Void ) {
         print(#function)
@@ -66,22 +77,30 @@ class PhotoStore {
             return .failure(error!)
         }
         
-        return FlickrAPI.photos(fromJSON: jsonData)
+        return FlickrAPI.photos(fromJSON: jsonData, into:persistentContainer.viewContext)
     }
     
     func fetchImage(for photo: Photo, completion: @escaping (ImageResult) -> Void)
     {
-        let photoKey = photo.photoID
+        guard let photoKey = photo.photoID else {
+            preconditionFailure("Photo expected to have a photoID")
+        }
+        
         if let image = imageStore.image(forKey: photoKey)
         {
+            print("find the photo: \(photoKey)")
             OperationQueue.main.addOperation {
                 completion(.Success(image))
             }
             return
         }
         
-        let photoURL = photo.remoteURL
-        let request = URLRequest(url: photoURL)
+        guard let photoURL = photo.remoteURL else {
+            preconditionFailure("Photo expected to have a remoteURL")
+        }
+        
+        
+        let request = URLRequest(url: photoURL as URL)
         
         let task = session.dataTask(with: request){
             (data, response, error) -> Void in

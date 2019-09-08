@@ -41,7 +41,15 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
         
         var finalPhotos = [Photo]()
         for i in 1...55 {
-            let diyPhoto = Photo(title: "test", photoID: "\(i)", remoteURL: testUrl! as URL, dateTaken: Date.init() )
+            //let diyPhoto = Photo(title: "test", photoID: "\(i)", remoteURL: testUrl! as URL, dateTaken: Date.init() )
+            var diyPhoto: Photo!
+            store.persistentContainer.viewContext.performAndWait {
+                diyPhoto = Photo(context: store.persistentContainer.viewContext)
+                diyPhoto.title = "test"
+                diyPhoto.photoID = "\(i)"
+                diyPhoto.remoteURL = testUrl
+                diyPhoto.dateTaken = Date.init() as NSDate
+            }
             finalPhotos.append(diyPhoto)
         }
         photoDataSource.photos = finalPhotos
