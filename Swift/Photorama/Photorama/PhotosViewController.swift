@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class PhotosViewController: UIViewController, UICollectionViewDelegate {
     
@@ -22,17 +23,12 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
 //        store.fetchInterestingPhotos {
 //            (photosResult) -> Void in
 //
-//            switch photosResult {
-//            case let .success(photos):
-//                print("Successfully found \(photos.count)")
-//
-//                self.photoDataSource.photos = photos
-//            case let .failure(error):
-//                print("Error fetching recent photos: \(error)")
-//                self.photoDataSource.photos.removeAll()
-//            }
-//            self.collectionView.reloadSections(IndexSet(integer: 0))
+//            self.updateDataSource()
 //        }
+        
+        collectionView.dataSource = photoDataSource
+        collectionView.delegate   = self
+        updateDataSource()
         
         print("==========Date.init(): \(Date.init())")
         let testUrl = NSURL(string: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567865978800&di=bf92f4157ed9cae12878ac2a83adbb48&imgtype=0&src=http%3A%2F%2Fi1.hdslb.com%2Fbfs%2Farchive%2F3f8dfe27be1533320233a1a15c307db91637f649.jpg")
@@ -40,8 +36,15 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
         
         
         var finalPhotos = [Photo]()
-        for i in 1...55 {
-            //let diyPhoto = Photo(title: "test", photoID: "\(i)", remoteURL: testUrl! as URL, dateTaken: Date.init() )
+        for i in 1...10 {
+            if(checkPhotoIDisexist(photoID: "\(i)", in: store.persistentContainer.viewContext))
+            {
+                print("an exist photo ID is: \(i)")
+                continue
+            }
+            
+            print("add photo ID is: \(i)")
+            
             var diyPhoto: Photo!
             store.persistentContainer.viewContext.performAndWait {
                 diyPhoto = Photo(context: store.persistentContainer.viewContext)
@@ -54,8 +57,24 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
         }
         photoDataSource.photos = finalPhotos
         
-        collectionView.dataSource = photoDataSource
-        collectionView.delegate   = self
+        do{
+            try store.persistentContainer.viewContext.save()
+        } catch let error {
+            print(error)
+        }
+    }
+    
+    private func checkPhotoIDisexist(photoID:String, in context:NSManagedObjectContext) -> Bool
+    {
+        let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
+        let predicate = NSPredicate(format: "\(#keyPath(Photo.photoID)) == \(photoID)")
+        fetchRequest.predicate = predicate
+        
+        var fetchedPhotos:[Photo]?
+        context.performAndWait {
+            fetchedPhotos = try? fetchRequest.execute()
+        }
+        return fetchedPhotos?.first != nil
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -70,6 +89,23 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
             }
         default:
             preconditionFailure("Unexpected segue identifier.")
+        }
+    }
+    
+    private func updateDataSource()
+    {
+        store.fetchAllPhotos {
+            (photosResult) in
+            
+            switch photosResult {
+            case let .success(photos):
+                print("fetchAllPhotos success")
+                self.photoDataSource.photos = photos
+            case .failure:
+                print("fetchAllPhotos failure")
+                self.photoDataSource.photos.removeAll()
+            }
+            self.collectionView.reloadSections(IndexSet(integer: 0))
         }
     }
     
@@ -93,5 +129,4 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
             }
         }
     }
-    
 }
