@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DaH-5y-UVe">
+                                <rect key="frame" x="0.0" y="44" width="414" height="419"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="419" id="aPL-pd-nyz"/>
+                                    <constraint firstAttribute="width" constant="414" id="uBW-9e-8uS"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKH-gI-xTa">
+                                <rect key="frame" x="0.0" y="707" width="91" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="91" id="Snd-51-Ovy"/>
+                                    <constraint firstAttribute="height" constant="55" id="zej-oA-EuL"/>
+                                </constraints>
+                                <state key="normal" title="生成"/>
+                                <connections>
+                                    <action selector="createQrcode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rpI-kc-vSs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7VE-yt-Lil">
+                                <rect key="frame" x="377" y="727" width="37" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="37" id="FuM-UY-wBr"/>
+                                    <constraint firstAttribute="height" constant="35" id="lPR-1Z-IN4"/>
+                                </constraints>
+                                <state key="normal" title="扫描"/>
+                                <connections>
+                                    <segue destination="XGj-a3-E7w" kind="show" identifier="scanSegue" id="rmV-Ad-tvB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="DaH-5y-UVe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="20H-AV-owC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="sKH-gI-xTa" secondAttribute="bottom" constant="100" id="6GA-DT-kfU"/>
+                            <constraint firstItem="sKH-gI-xTa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CGH-lq-7hc"/>
+                            <constraint firstItem="DaH-5y-UVe" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="HFq-i7-QVw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7VE-yt-Lil" secondAttribute="trailing" id="Rm0-qF-g8s"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7VE-yt-Lil" secondAttribute="bottom" constant="100" id="kmb-JM-Bap"/>
+                            <constraint firstItem="DaH-5y-UVe" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xGZ-hM-Sc0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="QrcodeImage" destination="DaH-5y-UVe" id="hcx-qh-lKv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="37.681159420289859" y="18.75"/>
+        </scene>
+        <!--Scan View Controller-->
+        <scene sceneID="YCv-K8-8ed">
+            <objects>
+                <viewController id="XGj-a3-E7w" customClass="ScanViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KWl-yR-knN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="cL7-P3-waH"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OFj-Qx-ZrO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="864" y="32"/>
+        </scene>
+    </scenes>
+</document>
