@@ -77,7 +77,7 @@
         AVMetadataMachineReadableCodeObject *firstObject = [metadataObjects objectAtIndex : 0];
         
         NSLog(@"lastObject: %@",lastObject);
-        NSLog(@"firstObject: %@",firstObject);
+        NSLog(@"firstObject: %@",firstObject.stringValue);
         
         // 停止扫描
         [self.session stopRunning];
