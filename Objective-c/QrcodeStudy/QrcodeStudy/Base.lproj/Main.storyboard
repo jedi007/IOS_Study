@@ -47,14 +47,38 @@
                                     <segue destination="XGj-a3-E7w" kind="show" identifier="scanSegue" id="rmV-Ad-tvB"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="二维码内容：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fj-4g-M4M">
+                                <rect key="frame" x="0.0" y="638" width="104" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="2au-SY-1II"/>
+                                    <constraint firstAttribute="width" constant="104" id="yd0-io-jgY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="D1B119140066" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="THW-ZC-Uw8">
+                                <rect key="frame" x="114" y="637.5" width="160" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="1dP-aT-yW4"/>
+                                    <constraint firstAttribute="height" constant="40" id="VMW-7d-LK6"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="DaH-5y-UVe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="20H-AV-owC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="sKH-gI-xTa" secondAttribute="bottom" constant="100" id="6GA-DT-kfU"/>
+                            <constraint firstItem="THW-ZC-Uw8" firstAttribute="leading" secondItem="1fj-4g-M4M" secondAttribute="trailing" constant="10" id="7ef-Zn-7dC"/>
                             <constraint firstItem="sKH-gI-xTa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CGH-lq-7hc"/>
+                            <constraint firstItem="sKH-gI-xTa" firstAttribute="top" secondItem="1fj-4g-M4M" secondAttribute="bottom" constant="30" id="Fps-hc-45c"/>
                             <constraint firstItem="DaH-5y-UVe" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="HFq-i7-QVw"/>
+                            <constraint firstItem="1fj-4g-M4M" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="M5o-k0-r8w"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7VE-yt-Lil" secondAttribute="trailing" id="Rm0-qF-g8s"/>
+                            <constraint firstItem="THW-ZC-Uw8" firstAttribute="centerY" secondItem="1fj-4g-M4M" secondAttribute="centerY" id="X1d-hR-3GB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7VE-yt-Lil" secondAttribute="bottom" constant="100" id="kmb-JM-Bap"/>
                             <constraint firstItem="DaH-5y-UVe" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xGZ-hM-Sc0"/>
                         </constraints>
@@ -62,6 +86,7 @@
                     </view>
                     <connections>
                         <outlet property="QrcodeImage" destination="DaH-5y-UVe" id="hcx-qh-lKv"/>
+                        <outlet property="TextField_inputString" destination="THW-ZC-Uw8" id="SqJ-j7-x99"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
