@@ -14,6 +14,11 @@ enum ImageResult {
     case Failure(Error)
 }
 
+enum TagsResult{
+    case Success([Tag])
+    case failed(Error)
+}
+
 enum PhotoError: Error {
     case imageCreationError
 }
@@ -152,6 +157,22 @@ class PhotoStore {
                 completion(.success(allPhotos))
             } catch {
                 completion(.failure(error))
+            }
+        }
+    }
+    
+    func fetchAllTags(completion: @escaping (TagsResult) -> Void) {
+        let fetchRequest: NSFetchRequest<Tag> = Tag.fetchRequest()
+        let sortByName = NSSortDescriptor(key: #keyPath(Tag.name), ascending: true)
+        fetchRequest.sortDescriptors = [sortByName]
+        let viewContext = persistentContainer.viewContext
+        viewContext.perform {
+            do {
+                let allTags = try fetchRequest.execute()
+                print("allTags: \(allTags)")
+                completion(.Success(allTags))
+            } catch {
+                completion(.failed(error))
             }
         }
     }

@@ -48,7 +48,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
             var diyPhoto: Photo!
             store.persistentContainer.viewContext.performAndWait {
                 diyPhoto = Photo(context: store.persistentContainer.viewContext)
-                diyPhoto.title = "test"
+                diyPhoto.title = "test-\(i)"
                 diyPhoto.photoID = "\(i)"
                 diyPhoto.remoteURL = testUrl
                 diyPhoto.dateTaken = Date.init() as NSDate
@@ -109,7 +109,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
         }
     }
     
-    //MAERK: - UICollectionViewDelegate Methods
+    //MARK: - UICollectionViewDelegate Methods
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let photo = photoDataSource.photos[indexPath.row]
         
