@@ -15,6 +15,14 @@
 		CD30AE992329D2F000B66FCA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CD30AE982329D2F000B66FCA /* main.m */; };
 		CD30AEA12329D42000B66FCA /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = CD30AEA02329D42000B66FCA /* UIImage+Category.m */; };
 		CD30AEA42329D76600B66FCA /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD30AEA32329D76600B66FCA /* ScanViewController.m */; };
+		CDF4DE2D2338903B00471529 /* scanLine@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF4DE252338903B00471529 /* scanLine@3x.png */; };
+		CDF4DE2E2338903B00471529 /* QRCodeReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4DE262338903B00471529 /* QRCodeReaderView.m */; };
+		CDF4DE2F2338903B00471529 /* scanLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF4DE272338903B00471529 /* scanLine@2x.png */; };
+		CDF4DE302338903B00471529 /* lightNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF4DE282338903B00471529 /* lightNormal.png */; };
+		CDF4DE312338903B00471529 /* lightSelect.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF4DE292338903B00471529 /* lightSelect.png */; };
+		CDF4DE322338903B00471529 /* scanscanBg.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF4DE2A2338903B00471529 /* scanscanBg.png */; };
+		CDF4DE332338903B00471529 /* noticeMusic.wav in Resources */ = {isa = PBXBuildFile; fileRef = CDF4DE2B2338903B00471529 /* noticeMusic.wav */; };
+		CDF4DE362338918D00471529 /* QRcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4DE352338918D00471529 /* QRcodeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +40,16 @@
 		CD30AEA02329D42000B66FCA /* UIImage+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Category.m"; sourceTree = "<group>"; };
 		CD30AEA22329D76600B66FCA /* ScanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScanViewController.h; sourceTree = "<group>"; };
 		CD30AEA32329D76600B66FCA /* ScanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScanViewController.m; sourceTree = "<group>"; };
+		CDF4DE252338903B00471529 /* scanLine@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "scanLine@3x.png"; path = "QrcodeStudy/QRCode/scanLine@3x.png"; sourceTree = "<group>"; };
+		CDF4DE262338903B00471529 /* QRCodeReaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QRCodeReaderView.m; path = QrcodeStudy/QRCode/QRCodeReaderView.m; sourceTree = "<group>"; };
+		CDF4DE272338903B00471529 /* scanLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "scanLine@2x.png"; path = "QrcodeStudy/QRCode/scanLine@2x.png"; sourceTree = "<group>"; };
+		CDF4DE282338903B00471529 /* lightNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lightNormal.png; path = QrcodeStudy/QRCode/lightNormal.png; sourceTree = "<group>"; };
+		CDF4DE292338903B00471529 /* lightSelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lightSelect.png; path = QrcodeStudy/QRCode/lightSelect.png; sourceTree = "<group>"; };
+		CDF4DE2A2338903B00471529 /* scanscanBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scanscanBg.png; path = QrcodeStudy/QRCode/scanscanBg.png; sourceTree = "<group>"; };
+		CDF4DE2B2338903B00471529 /* noticeMusic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = noticeMusic.wav; path = QrcodeStudy/QRCode/noticeMusic.wav; sourceTree = "<group>"; };
+		CDF4DE2C2338903B00471529 /* QRCodeReaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QRCodeReaderView.h; path = QrcodeStudy/QRCode/QRCodeReaderView.h; sourceTree = "<group>"; };
+		CDF4DE342338918D00471529 /* QRcodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRcodeViewController.h; sourceTree = "<group>"; };
+		CDF4DE352338918D00471529 /* QRcodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRcodeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +66,7 @@
 		CD30AE7D2329D2EF00B66FCA = {
 			isa = PBXGroup;
 			children = (
+				CDF4DE2423388F5600471529 /* QRCode */,
 				CD30AE882329D2EF00B66FCA /* QrcodeStudy */,
 				CD30AE872329D2EF00B66FCA /* Products */,
 			);
@@ -77,8 +96,25 @@
 				CD30AEA02329D42000B66FCA /* UIImage+Category.m */,
 				CD30AEA22329D76600B66FCA /* ScanViewController.h */,
 				CD30AEA32329D76600B66FCA /* ScanViewController.m */,
+				CDF4DE342338918D00471529 /* QRcodeViewController.h */,
+				CDF4DE352338918D00471529 /* QRcodeViewController.m */,
 			);
 			path = QrcodeStudy;
+			sourceTree = "<group>";
+		};
+		CDF4DE2423388F5600471529 /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				CDF4DE282338903B00471529 /* lightNormal.png */,
+				CDF4DE292338903B00471529 /* lightSelect.png */,
+				CDF4DE2B2338903B00471529 /* noticeMusic.wav */,
+				CDF4DE2C2338903B00471529 /* QRCodeReaderView.h */,
+				CDF4DE262338903B00471529 /* QRCodeReaderView.m */,
+				CDF4DE272338903B00471529 /* scanLine@2x.png */,
+				CDF4DE252338903B00471529 /* scanLine@3x.png */,
+				CDF4DE2A2338903B00471529 /* scanscanBg.png */,
+			);
+			name = QRCode;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +175,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD30AE962329D2F000B66FCA /* LaunchScreen.storyboard in Resources */,
+				CDF4DE302338903B00471529 /* lightNormal.png in Resources */,
 				CD30AE932329D2F000B66FCA /* Assets.xcassets in Resources */,
+				CDF4DE2D2338903B00471529 /* scanLine@3x.png in Resources */,
+				CDF4DE322338903B00471529 /* scanscanBg.png in Resources */,
+				CDF4DE332338903B00471529 /* noticeMusic.wav in Resources */,
+				CDF4DE2F2338903B00471529 /* scanLine@2x.png in Resources */,
+				CDF4DE312338903B00471529 /* lightSelect.png in Resources */,
 				CD30AE912329D2EF00B66FCA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -154,6 +196,8 @@
 				CD30AE8E2329D2EF00B66FCA /* ViewController.m in Sources */,
 				CD30AEA42329D76600B66FCA /* ScanViewController.m in Sources */,
 				CD30AE992329D2F000B66FCA /* main.m in Sources */,
+				CDF4DE362338918D00471529 /* QRcodeViewController.m in Sources */,
+				CDF4DE2E2338903B00471529 /* QRCodeReaderView.m in Sources */,
 				CD30AE8B2329D2EF00B66FCA /* AppDelegate.m in Sources */,
 				CD30AEA12329D42000B66FCA /* UIImage+Category.m in Sources */,
 			);

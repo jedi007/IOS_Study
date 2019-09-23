@@ -67,12 +67,25 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ryf-gK-Oab">
+                                <rect key="frame" x="151" y="713" width="112" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="112" id="Atj-hz-Tfh"/>
+                                    <constraint firstAttribute="height" constant="43" id="kQd-Ap-hM7"/>
+                                </constraints>
+                                <state key="normal" title="go QRCodeView"/>
+                                <connections>
+                                    <segue destination="eAX-Dv-Ya2" kind="show" id="yRJ-rP-ODX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="ryf-gK-Oab" firstAttribute="centerY" secondItem="sKH-gI-xTa" secondAttribute="centerY" id="0v7-NC-470"/>
                             <constraint firstItem="DaH-5y-UVe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="20H-AV-owC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="sKH-gI-xTa" secondAttribute="bottom" constant="100" id="6GA-DT-kfU"/>
                             <constraint firstItem="THW-ZC-Uw8" firstAttribute="leading" secondItem="1fj-4g-M4M" secondAttribute="trailing" constant="10" id="7ef-Zn-7dC"/>
+                            <constraint firstItem="ryf-gK-Oab" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="84Z-Bm-ie1"/>
                             <constraint firstItem="sKH-gI-xTa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CGH-lq-7hc"/>
                             <constraint firstItem="sKH-gI-xTa" firstAttribute="top" secondItem="1fj-4g-M4M" secondAttribute="bottom" constant="30" id="Fps-hc-45c"/>
                             <constraint firstItem="DaH-5y-UVe" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="HFq-i7-QVw"/>
@@ -93,6 +106,21 @@
             </objects>
             <point key="canvasLocation" x="37.681159420289859" y="18.75"/>
         </scene>
+        <!--Rcode View Controller-->
+        <scene sceneID="NKW-EF-da9">
+            <objects>
+                <viewController id="eAX-Dv-Ya2" customClass="QRcodeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5ck-7W-vnM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="rKC-Vc-h3O"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tqw-TZ-njV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="38" y="775"/>
+        </scene>
         <!--Scan View Controller-->
         <scene sceneID="YCv-K8-8ed">
             <objects>
@@ -106,7 +134,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OFj-Qx-ZrO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="864" y="32"/>
+            <point key="canvasLocation" x="874" y="19"/>
         </scene>
     </scenes>
 </document>
