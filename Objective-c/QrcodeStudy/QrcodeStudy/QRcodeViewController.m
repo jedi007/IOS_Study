@@ -31,7 +31,8 @@
     readview.backgroundColor = [UIColor clearColor];
     readview.delegate = self;
     readview.alpha = 0;
-    self.view = readview;
+    [self.view addSubview:readview];
+    //self.view = readview;
     
     [UIView animateWithDuration:0.5 animations:^{
         readview.alpha = 1;

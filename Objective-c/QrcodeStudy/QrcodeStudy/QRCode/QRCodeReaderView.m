@@ -193,13 +193,6 @@
     
 }
 
--(void)displayinputBtn:(UIButton*)sender{
-    sender.hidden = NO;
-}
-
--(void)openInputView:(id)sender{
-    //[[lhScanQCodeViewController alloc]openInputView:nil];
-}
 
 - (void)turnBtnEvent:(UIButton *)button_
 {
