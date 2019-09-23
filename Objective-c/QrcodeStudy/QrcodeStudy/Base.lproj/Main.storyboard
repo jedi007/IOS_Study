@@ -75,7 +75,7 @@
                                 </constraints>
                                 <state key="normal" title="go QRCodeView"/>
                                 <connections>
-                                    <segue destination="eAX-Dv-Ya2" kind="show" id="yRJ-rP-ODX"/>
+                                    <segue destination="VKd-pm-Xea" kind="show" id="yRJ-rP-ODX"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -106,7 +106,7 @@
             </objects>
             <point key="canvasLocation" x="37.681159420289859" y="18.75"/>
         </scene>
-        <!--Rcode View Controller-->
+        <!--扫描窗口-->
         <scene sceneID="NKW-EF-da9">
             <objects>
                 <viewController id="eAX-Dv-Ya2" customClass="QRcodeViewController" sceneMemberID="viewController">
@@ -116,10 +116,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="rKC-Vc-h3O"/>
                     </view>
+                    <navigationItem key="navigationItem" title="扫描窗口" id="X0h-ov-rrK">
+                        <barButtonItem key="leftBarButtonItem" title="&lt;" id="Pj9-mI-O4R">
+                            <connections>
+                                <action selector="exitBtnClicked:" destination="eAX-Dv-Ya2" id="2lK-bw-8Jm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="exitBtn" destination="Pj9-mI-O4R" id="zNT-RD-243"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tqw-TZ-njV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="38" y="775"/>
+            <point key="canvasLocation" x="947.82608695652186" y="774.77678571428567"/>
         </scene>
         <!--Scan View Controller-->
         <scene sceneID="YCv-K8-8ed">
@@ -135,6 +145,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OFj-Qx-ZrO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="874" y="19"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3Oi-aA-FKH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VKd-pm-Xea" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="f0y-Cd-B0l">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eAX-Dv-Ya2" kind="relationship" relationship="rootViewController" id="FUc-K3-hWp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QDw-64-Br7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="37.681159420289859" y="774.77678571428567"/>
         </scene>
     </scenes>
 </document>

@@ -17,6 +17,7 @@
 
 
 @interface QRcodeViewController ()
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *exitBtn;
 
 @end
 
@@ -43,6 +44,14 @@
     NSLog(@"create readview");
     [readview loopDrawLine];
     [readview start];
+    
+    
+}
+
+
+- (IBAction)exitBtnClicked:(UIBarButtonItem *)sender {
+    [self dismissViewControllerAnimated:YES completion:^{}];
+    
 }
 
 /*
