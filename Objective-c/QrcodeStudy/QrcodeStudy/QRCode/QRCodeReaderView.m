@@ -31,6 +31,8 @@
 #define DeviceMaxWidth ([UIScreen mainScreen].bounds.size.width)
 #define widthRate DeviceMaxWidth/320
 
+#define WeakSelf(weakSelf)  __weak __typeof(self) weakSelf = self;
+
 #define contentTitleColorStr @"666666" //正文颜色较深
 
 @interface QRCodeReaderView ()<AVCaptureMetadataOutputObjectsDelegate>
@@ -49,6 +51,13 @@
     if ((self = [super initWithFrame:frame])) {
 
         [self instanceDevice];
+        self.backgroundColor = [UIColor clearColor];
+        
+        [UIView animateWithDuration:1.0 animations:^{
+            self.alpha = 1;
+        }completion:^(BOOL finished) {
+            
+        }];
   }
   
   return self;
@@ -112,7 +121,7 @@
     
     [self setOverlayPickerView:self];
     
-    [session startRunning];
+    //[session startRunning];
 }
 
 -(void)loopDrawLine
@@ -129,14 +138,16 @@
         [self addSubview:_readLineView];
     }
     
+    WeakSelf(weakself)
     [UIView animateWithDuration:1.5 animations:^{
-        
-        _readLineView.frame =CGRectMake(60*widthRate, (DeviceMaxHeight-200*widthRate)/2+200*widthRate-5, 200*widthRate, 2);
+        QRCodeReaderView* innerSelf = weakself;
+        innerSelf->_readLineView.frame =CGRectMake(60*widthRate, (DeviceMaxHeight-200*widthRate)/2+200*widthRate-5, 200*widthRate, 2);
     } completion:^(BOOL finished) {
-        if (!_is_Anmotion) {
-            [self loopDrawLine];
+        QRCodeReaderView* innerSelf = weakself;
+        if (innerSelf->_is_Anmotion) {
+            [innerSelf loopDrawLine];
         }
-        _is_AnmotionFinished = YES;
+        innerSelf->_is_AnmotionFinished = YES;
     }];
 }
 
@@ -190,7 +201,6 @@
     
     [turnBtn addTarget:self action:@selector(turnBtnEvent:) forControlEvents:UIControlEventTouchUpInside];
     [downView addSubview:turnBtn];
-    
 }
 
 
@@ -244,11 +254,14 @@
 
 - (void)start
 {
+    _is_Anmotion = YES;
+    [self loopDrawLine];
     [session startRunning];
 }
 
 - (void)stop
 {
+    _is_Anmotion = NO;
     [session stopRunning];
 }
 

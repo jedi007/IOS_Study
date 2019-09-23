@@ -16,7 +16,10 @@
 #define IOS8 ([[UIDevice currentDevice].systemVersion intValue] >= 8 ? YES : NO)
 
 
-@interface QRcodeViewController ()
+@interface QRcodeViewController ()<QRCodeReaderViewDelegate>
+{
+    QRCodeReaderView * readview;//二维码扫描对象
+}
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *exitBtn;
 
 @end
@@ -27,25 +30,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    QRCodeReaderView* readview = [[QRCodeReaderView alloc]initWithFrame:CGRectMake(0, 0, DeviceMaxWidth, DeviceMaxHeight)];
-    readview.is_AnmotionFinished = YES;
-    readview.backgroundColor = [UIColor clearColor];
+    readview = [[QRCodeReaderView alloc]initWithFrame:CGRectMake(0, 0, DeviceMaxWidth, DeviceMaxHeight)];
     readview.delegate = self;
-    readview.alpha = 0;
     [self.view addSubview:readview];
-    //self.view = readview;
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        readview.alpha = 1;
-    }completion:^(BOOL finished) {
-        
-    }];
     
     NSLog(@"create readview");
-    [readview loopDrawLine];
     [readview start];
-    
-    
 }
 
 
@@ -54,14 +44,22 @@
     
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)reStartScan
+{
+    [readview start];
 }
-*/
+
+
+#pragma mark -QRCodeReaderViewDelegate
+- (void)readerScanResult:(NSString *)result
+{
+    NSLog(@"receive result : %@",result);
+    
+    [readview stop];
+    
+    //for test
+    [self performSelector:@selector(reStartScan) withObject:nil afterDelay:3.0];
+}
 
 @end
