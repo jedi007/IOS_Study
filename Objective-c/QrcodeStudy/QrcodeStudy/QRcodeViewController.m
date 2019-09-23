@@ -40,8 +40,7 @@
 
 
 - (IBAction)exitBtnClicked:(UIBarButtonItem *)sender {
-    [self dismissViewControllerAnimated:YES completion:^{}];
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

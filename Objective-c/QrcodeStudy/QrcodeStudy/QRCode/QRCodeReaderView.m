@@ -141,13 +141,15 @@
     WeakSelf(weakself)
     [UIView animateWithDuration:1.5 animations:^{
         QRCodeReaderView* innerSelf = weakself;
-        innerSelf->_readLineView.frame =CGRectMake(60*widthRate, (DeviceMaxHeight-200*widthRate)/2+200*widthRate-5, 200*widthRate, 2);
+        innerSelf.readLineView.frame =CGRectMake(60*widthRate, (DeviceMaxHeight-200*widthRate)/2+200*widthRate-5, 200*widthRate, 2);
     } completion:^(BOOL finished) {
         QRCodeReaderView* innerSelf = weakself;
-        if (innerSelf->_is_Anmotion) {
-            [innerSelf loopDrawLine];
+        if (innerSelf) {//析对象构以后，有可能还会执行一次，此时外部weakself获取到的self指针就已经是null了
+            if (innerSelf.is_Anmotion) {
+                [innerSelf loopDrawLine];
+            }
+            innerSelf.is_AnmotionFinished = YES;
         }
-        innerSelf->_is_AnmotionFinished = YES;
     }];
 }
 
