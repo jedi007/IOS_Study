@@ -53,10 +53,12 @@
         [self instanceDevice];
         self.backgroundColor = [UIColor clearColor];
         
+        //淡出动画
+        self.alpha = 0;
         [UIView animateWithDuration:1.0 animations:^{
             self.alpha = 1;
         }completion:^(BOOL finished) {
-            
+
         }];
   }
   
