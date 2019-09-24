@@ -18,20 +18,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KRP-ff-xhh">
-                                <rect key="frame" x="138" y="85" width="148" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KRP-ff-xhh">
+                                <rect key="frame" x="133" y="64" width="148" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="OZb-32-62A"/>
+                                    <constraint firstAttribute="width" constant="148" id="amM-kx-Zyr"/>
+                                </constraints>
                                 <state key="normal" title="扫描相册中的二维码"/>
                                 <connections>
                                     <action selector="sacnFromphotos:" destination="TkA-4z-Glr" eventType="touchUpInside" id="1DB-0g-BuZ"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QRCodeTest.png" translatesAutoresizingMaskIntoConstraints="NO" id="UsW-pY-cdt">
+                                <rect key="frame" x="69.5" y="134" width="275" height="491"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="275" id="89h-ln-4eZ"/>
+                                    <constraint firstAttribute="height" constant="491" id="GSD-xO-dHn"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="jIs-Zr-4xw" appends="YES" id="3dC-bK-dH7"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="KRP-ff-xhh" firstAttribute="centerX" secondItem="3Y9-d5-ZQu" secondAttribute="centerX" id="ASf-x5-8qs"/>
+                            <constraint firstItem="UsW-pY-cdt" firstAttribute="top" secondItem="KRP-ff-xhh" secondAttribute="bottom" constant="20" id="NiT-bT-F07"/>
+                            <constraint firstItem="UsW-pY-cdt" firstAttribute="centerX" secondItem="3Y9-d5-ZQu" secondAttribute="centerX" id="lkV-gR-dcx"/>
+                            <constraint firstItem="KRP-ff-xhh" firstAttribute="top" secondItem="LDw-fu-tFb" secondAttribute="top" constant="20" id="sBg-gn-zOL"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="LDw-fu-tFb"/>
                     </view>
+                    <connections>
+                        <outlet property="testImageView" destination="UsW-pY-cdt" id="sq0-cq-HPS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsm-ge-a9e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="jIs-Zr-4xw">
+                    <connections>
+                        <action selector="longPressToScanPhoto:" destination="TkA-4z-Glr" id="rdC-xx-guU"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1142.0289855072465" y="304.6875"/>
         </scene>
@@ -199,4 +227,7 @@
             <point key="canvasLocation" x="37.681159420289859" y="774.77678571428567"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="QRCodeTest.png" width="472" height="936"/>
+    </resources>
 </document>

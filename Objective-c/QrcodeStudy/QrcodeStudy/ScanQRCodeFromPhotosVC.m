@@ -18,6 +18,8 @@
 
 @property (strong, nonatomic) CIDetector *detector;
 
+@property (weak, nonatomic) IBOutlet UIImageView *testImageView;
+
 @end
 
 @implementation ScanQRCodeFromPhotosVC
@@ -25,6 +27,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+
+- (IBAction)longPressToScanPhoto:(UILongPressGestureRecognizer *)sender {
+    
+    
+    
+    NSLog(@"longPress received");
+    
+    UIImage *image = _testImageView.image;
+    
+    NSString* scanResult = [self getImageQRCod:image];
+    NSLog(@"scanResult : %@",scanResult);
+    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:[[NSString alloc] initWithFormat:@"解析成功，识别出的二维码是： %@",scanResult] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView show];
 }
 
 
@@ -59,6 +76,33 @@
 }
 
 
+- (NSString *)getImageQRCod:(UIImage* )image
+{
+    CIDetector* detector2 = [CIDetector detectorOfType:CIDetectorTypeQRCode context:nil options:@{ CIDetectorAccuracy : CIDetectorAccuracyHigh }];
+    NSArray *features = [detector2 featuresInImage:[CIImage imageWithCGImage:image.CGImage]];
+    NSLog(@"features.count : %ld",features.count);
+    if (features.count >=1) {
+        
+        CIQRCodeFeature *feature = [features objectAtIndex:0];
+        NSString *scannedResult = feature.messageString;
+        
+        //音效
+        SystemSoundID soundID;
+        NSString *strSoundFile = [[NSBundle mainBundle] pathForResource:@"noticeMusic" ofType:@"wav"];
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:strSoundFile],&soundID);
+        AudioServicesPlaySystemSound(soundID);
+        
+        NSLog(@"scannedResult : %@",scannedResult);
+        return scannedResult;
+    }
+    else{
+        UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"解析错误，请选择正确的二维码图片" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return NULL;
+    }
+}
+
+
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
@@ -68,34 +112,13 @@
         image = [info objectForKey:UIImagePickerControllerOriginalImage];
     }
     
-    NSLog(@"self.detector : %@ ",self.detector);
-    NSArray *features = [self.detector featuresInImage:[CIImage imageWithCGImage:image.CGImage]];
-    NSLog(@"features.count : %ld",features.count);
-    if (features.count >=1) {
-        
-        [picker dismissViewControllerAnimated:YES completion:^{
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-            
-            CIQRCodeFeature *feature = [features objectAtIndex:0];
-            NSString *scannedResult = feature.messageString;
-            
-            SystemSoundID soundID;
-            NSString *strSoundFile = [[NSBundle mainBundle] pathForResource:@"noticeMusic" ofType:@"wav"];
-            AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:strSoundFile],&soundID);
-            AudioServicesPlaySystemSound(soundID);
-            
-            NSLog(@"scannedResult : %@",scannedResult);
-        }];
-        
-    }
-    else{
-        UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"解析错误，请选择正确的二维码图片" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alertView show];
-        
-        [picker dismissViewControllerAnimated:YES completion:^{
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-        }];
-    }
+    NSString* scannedResult = [self getImageQRCod:image];
+    
+    NSLog(@"scannedResult in imagePickerController cb: %@",scannedResult);
+    
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    }];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

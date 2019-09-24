@@ -24,6 +24,7 @@
 		CDF4DE332338903B00471529 /* noticeMusic.wav in Resources */ = {isa = PBXBuildFile; fileRef = CDF4DE2B2338903B00471529 /* noticeMusic.wav */; };
 		CDF4DE362338918D00471529 /* QRcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4DE352338918D00471529 /* QRcodeViewController.m */; };
 		CDF4DE392339F20900471529 /* ScanQRCodeFromPhotosVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4DE382339F20900471529 /* ScanQRCodeFromPhotosVC.m */; };
+		CDF4DE3B2339FA2200471529 /* QRCodeTest.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF4DE3A2339FA2100471529 /* QRCodeTest.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		CDF4DE352338918D00471529 /* QRcodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRcodeViewController.m; sourceTree = "<group>"; };
 		CDF4DE372339F20900471529 /* ScanQRCodeFromPhotosVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScanQRCodeFromPhotosVC.h; sourceTree = "<group>"; };
 		CDF4DE382339F20900471529 /* ScanQRCodeFromPhotosVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScanQRCodeFromPhotosVC.m; sourceTree = "<group>"; };
+		CDF4DE3A2339FA2100471529 /* QRCodeTest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QRCodeTest.png; path = QrcodeStudy/QRCode/QRCodeTest.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 		CDF4DE2423388F5600471529 /* QRCode */ = {
 			isa = PBXGroup;
 			children = (
+				CDF4DE3A2339FA2100471529 /* QRCodeTest.png */,
 				CDF4DE282338903B00471529 /* lightNormal.png */,
 				CDF4DE292338903B00471529 /* lightSelect.png */,
 				CDF4DE2B2338903B00471529 /* noticeMusic.wav */,
@@ -188,6 +191,7 @@
 				CDF4DE2F2338903B00471529 /* scanLine@2x.png in Resources */,
 				CDF4DE312338903B00471529 /* lightSelect.png in Resources */,
 				CD30AE912329D2EF00B66FCA /* Main.storyboard in Resources */,
+				CDF4DE3B2339FA2200471529 /* QRCodeTest.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
