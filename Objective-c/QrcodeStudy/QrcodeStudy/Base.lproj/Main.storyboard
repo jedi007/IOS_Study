@@ -10,6 +10,31 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--ScanQR Code From PhotosVC-->
+        <scene sceneID="isd-i0-S6a">
+            <objects>
+                <viewController id="TkA-4z-Glr" customClass="ScanQRCodeFromPhotosVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Y9-d5-ZQu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KRP-ff-xhh">
+                                <rect key="frame" x="138" y="85" width="148" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="扫描相册中的二维码"/>
+                                <connections>
+                                    <action selector="sacnFromphotos:" destination="TkA-4z-Glr" eventType="touchUpInside" id="1DB-0g-BuZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="LDw-fu-tFb"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xsm-ge-a9e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1142.0289855072465" y="304.6875"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -78,6 +103,13 @@
                                     <segue destination="VKd-pm-Xea" kind="show" id="yRJ-rP-ODX"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vhy-cV-Yne">
+                                <rect key="frame" x="22" y="772" width="123" height="30"/>
+                                <state key="normal" title="从相册扫描二维码"/>
+                                <connections>
+                                    <segue destination="TkA-4z-Glr" kind="show" id="gph-Wu-Nfv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -89,10 +121,12 @@
                             <constraint firstItem="sKH-gI-xTa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CGH-lq-7hc"/>
                             <constraint firstItem="sKH-gI-xTa" firstAttribute="top" secondItem="1fj-4g-M4M" secondAttribute="bottom" constant="30" id="Fps-hc-45c"/>
                             <constraint firstItem="DaH-5y-UVe" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="HFq-i7-QVw"/>
+                            <constraint firstItem="vhy-cV-Yne" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="22" id="HR5-mR-ufJ"/>
                             <constraint firstItem="1fj-4g-M4M" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="M5o-k0-r8w"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7VE-yt-Lil" secondAttribute="trailing" id="Rm0-qF-g8s"/>
                             <constraint firstItem="THW-ZC-Uw8" firstAttribute="centerY" secondItem="1fj-4g-M4M" secondAttribute="centerY" id="X1d-hR-3GB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7VE-yt-Lil" secondAttribute="bottom" constant="100" id="kmb-JM-Bap"/>
+                            <constraint firstItem="vhy-cV-Yne" firstAttribute="top" secondItem="sKH-gI-xTa" secondAttribute="bottom" constant="10" id="pVe-Vg-quh"/>
                             <constraint firstItem="DaH-5y-UVe" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xGZ-hM-Sc0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

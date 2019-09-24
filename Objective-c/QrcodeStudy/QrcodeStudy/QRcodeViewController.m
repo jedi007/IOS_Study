@@ -22,6 +22,7 @@
 }
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *exitBtn;
 
+
 @end
 
 @implementation QRcodeViewController
