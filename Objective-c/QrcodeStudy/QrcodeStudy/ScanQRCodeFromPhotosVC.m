@@ -8,6 +8,10 @@
 
 #import "ScanQRCodeFromPhotosVC.h"
 
+//播放声音
+#import <AVFoundation/AVFoundation.h>
+
+
 #define IOS8 ([[UIDevice currentDevice].systemVersion intValue] >= 8 ? YES : NO)
 
 @interface ScanQRCodeFromPhotosVC ()<UIImagePickerControllerDelegate>
@@ -75,10 +79,10 @@
             CIQRCodeFeature *feature = [features objectAtIndex:0];
             NSString *scannedResult = feature.messageString;
             
-            //            SystemSoundID soundID;
-            //            NSString *strSoundFile = [[NSBundle mainBundle] pathForResource:@"noticeMusic" ofType:@"wav"];
-            //            AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:strSoundFile],&soundID);
-            //            AudioServicesPlaySystemSound(soundID);
+            SystemSoundID soundID;
+            NSString *strSoundFile = [[NSBundle mainBundle] pathForResource:@"noticeMusic" ofType:@"wav"];
+            AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:strSoundFile],&soundID);
+            AudioServicesPlaySystemSound(soundID);
             
             NSLog(@"scannedResult : %@",scannedResult);
         }];
