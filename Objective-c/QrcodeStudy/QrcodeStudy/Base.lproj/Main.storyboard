@@ -40,10 +40,18 @@
                                     <outletCollection property="gestureRecognizers" destination="jIs-Zr-4xw" appends="YES" id="3dC-bK-dH7"/>
                                 </connections>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长按识别图中二维码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBz-f5-DfX">
+                                <rect key="frame" x="129" y="635" width="156" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="KRP-ff-xhh" firstAttribute="centerX" secondItem="3Y9-d5-ZQu" secondAttribute="centerX" id="ASf-x5-8qs"/>
+                            <constraint firstItem="yBz-f5-DfX" firstAttribute="top" secondItem="UsW-pY-cdt" secondAttribute="bottom" constant="10" id="DeG-aK-bMe"/>
+                            <constraint firstItem="yBz-f5-DfX" firstAttribute="centerX" secondItem="3Y9-d5-ZQu" secondAttribute="centerX" id="I01-v8-RSf"/>
                             <constraint firstItem="UsW-pY-cdt" firstAttribute="top" secondItem="KRP-ff-xhh" secondAttribute="bottom" constant="20" id="NiT-bT-F07"/>
                             <constraint firstItem="UsW-pY-cdt" firstAttribute="centerX" secondItem="3Y9-d5-ZQu" secondAttribute="centerX" id="lkV-gR-dcx"/>
                             <constraint firstItem="KRP-ff-xhh" firstAttribute="top" secondItem="LDw-fu-tFb" secondAttribute="top" constant="20" id="sBg-gn-zOL"/>
@@ -55,7 +63,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsm-ge-a9e" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="jIs-Zr-4xw">
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="1" id="jIs-Zr-4xw">
                     <connections>
                         <action selector="longPressToScanPhoto:" destination="TkA-4z-Glr" id="rdC-xx-guU"/>
                     </connections>

@@ -31,17 +31,30 @@
 
 
 - (IBAction)longPressToScanPhoto:(UILongPressGestureRecognizer *)sender {
+    NSLog(@"sender.state: %ld",(long)sender.state);
     
-    
-    
-    NSLog(@"longPress received");
-    
-    UIImage *image = _testImageView.image;
-    
-    NSString* scanResult = [self getImageQRCod:image];
-    NSLog(@"scanResult : %@",scanResult);
-    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:[[NSString alloc] initWithFormat:@"解析成功，识别出的二维码是： %@",scanResult] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alertView show];
+    //若不做switch处理，很容易连续响应多次
+    //若长按住View不放手，一直在上面拖动的话，会一直响应UIGestureRecognizerStateChanged
+    switch (sender.state) {
+        case UIGestureRecognizerStateBegan:
+        {
+            //这里长按一次只会进入一次
+            NSLog(@"longPress received");
+            
+            UIImage *image = _testImageView.image;
+            
+            NSString* scanResult = [self getImageQRCod:image];
+            NSLog(@"scanResult : %@",scanResult);
+            UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:[[NSString alloc] initWithFormat:@"解析成功，识别出的二维码是： %@",scanResult] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+            break;
+        }
+        case UIGestureRecognizerStateEnded:
+        case UIGestureRecognizerStateChanged:
+        case UIGestureRecognizerStateCancelled:
+        default:
+            break;
+    }
 }
 
 
